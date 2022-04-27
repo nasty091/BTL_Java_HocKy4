@@ -1,17 +1,24 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class DaiLy {
+	private int maDaiLy;
 	private String tenDaiLy;
-	private String DiaChi;
-	private int SDT;
 	
-	public DaiLy(String tenDaiLy, String diaChi, int sDT) {
-		super();
+	
+	public DaiLy(int maDaiLy, String tenDaiLy) {
+		this.maDaiLy = maDaiLy;
 		this.tenDaiLy = tenDaiLy;
-		DiaChi = diaChi;
-		SDT = sDT;
+	}
+	
+	public int getMaDaiLy() {
+		return maDaiLy;
+	}
+
+	public void setMaDaiLy(int maDaiLy) {
+		this.maDaiLy = maDaiLy;
 	}
 
 	public String getTenDaiLy() {
@@ -22,30 +29,9 @@ public class DaiLy {
 		this.tenDaiLy = tenDaiLy;
 	}
 
-	public String getDiaChi() {
-		return DiaChi;
-	}
-
-	public void setDiaChi(String diaChi) {
-		DiaChi = diaChi;
-	}
-
-	public int getSDT() {
-		return SDT;
-	}
-
-	public void setSDT(int sDT) {
-		SDT = sDT;
-	}
-
-	@Override
-	public String toString() {
-		return "Daily [tenDaiLy=" + tenDaiLy + ", DiaChi=" + DiaChi + ", SDT=" + SDT + "]";
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(DiaChi, SDT, tenDaiLy);
+		return Objects.hash(maDaiLy, tenDaiLy);
 	}
 
 	@Override
@@ -57,7 +43,41 @@ public class DaiLy {
 		if (getClass() != obj.getClass())
 			return false;
 		DaiLy other = (DaiLy) obj;
-		return Objects.equals(DiaChi, other.DiaChi) && SDT == other.SDT && Objects.equals(tenDaiLy, other.tenDaiLy);
+		return maDaiLy == other.maDaiLy && Objects.equals(tenDaiLy, other.tenDaiLy);
 	}
-	
+
+	@Override
+	public String toString() {
+		return "DaiLy [maDaiLy=" + maDaiLy + ", tenDaiLy=" + tenDaiLy + "]";
+	}
+
+
+	public static ArrayList<DaiLy> getDSDaiLy(){
+		String[] arr_daiLy = {"Fresta",
+							  "An Farm",
+							  "Trái cây nhập khẩu CEVIS",
+							  "Shop trái cây Miền Nam",
+							  "Klever Fruits",
+							  "Shop quà tặng trái cây",
+							  "Greeny house",
+							  "Minh Phương Fruit",
+							  "FS – Trái Cây Tươi",
+							  "Han Fruit",
+							  "Trái cây nhập khẩu Vinfruit",
+							  " Khang Foods & Fruits",
+							  "GreenSpace Store",
+							  "Rau quả Bình thuận",
+							  "Garden Market",
+							  "Smart Fruits",
+							  "Trái cây 141",
+				
+		};
+		ArrayList<DaiLy> listDaiLy = new ArrayList<DaiLy>();
+		int i = 0;
+		for (String tenDaiLy : arr_daiLy) {
+			DaiLy t = new DaiLy(i, tenDaiLy);
+			listDaiLy.add(t);
+		}
+		return listDaiLy;
+	}
 }
