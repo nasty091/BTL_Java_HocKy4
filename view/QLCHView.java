@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.DaiLy;
+import model.MacHang;
 import model.QLCHModel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -14,32 +16,39 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.Color;
+
+import javax.swing.Action;
 import javax.swing.Box;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+import controller.QLCHController;
+
 public class QLCHView extends JFrame {
 
 	private JPanel contentPane;
-	QLCHModel model;
-	private JTextField textField_MaMacHang;
-	private JTable table;
-	private JTextField textField_ID;
-	private JTextField textField_TenMacHang;
-	private JLabel lblID;
-	private JTextField textField_NgayNhap;
-	private JTextField textField_NgayHetHan;
-	private JTextField textField_GiaNhap;
-	private JTextField textField_GiaBan;
-	private JTextField textField_CanNang;
+	public QLCHModel model;
+	public JTextField textField_MaMacHang;
+	public JTable table;
+	public JTextField textField_ID;
+	public JTextField textField_TenMacHang;
+	public JLabel lblID;
+	public JTextField textField_NgayNhap;
+	public JTextField textField_NgayHetHan;
+	public JTextField textField_GiaNhap;
+	public JTextField textField_GiaBan;
+	public JTextField textField_CanNang;
+	public JComboBox comboBox_DaiLy;
 	/**
 	 * Launch the application.
 	 */
@@ -60,9 +69,12 @@ public class QLCHView extends JFrame {
 	 * Create the frame.
 	 */
 	public QLCHView() {
-		this.model = new QLCHModel(null);
+		this.model = new QLCHModel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 939, 824);
+		setBounds(100, 100, 939, 805);
+		
+		//Tạo nút để nhấn vào vd: thêm , sửa 
+		Action action = new QLCHController(this);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -101,7 +113,7 @@ public class QLCHView extends JFrame {
 		
 		JLabel lblDaiLy = new JLabel("\u0110\u1EA1i l\u00FD");
 		lblDaiLy.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblDaiLy.setBounds(28, 29, 62, 47);
+		lblDaiLy.setBounds(28, 29, 100, 47);
 		contentPane.add(lblDaiLy);
 		
 		JLabel lblMaMacHang = new JLabel("M\u00E3 m\u1EB7c h\u00E0ng");
@@ -115,7 +127,7 @@ public class QLCHView extends JFrame {
 		textField_MaMacHang.setBounds(536, 29, 176, 47);
 		contentPane.add(textField_MaMacHang);
 		
-		JButton btnTiemKiem = new JButton("Ti\u1EC1m ki\u1EBFm");
+		JButton btnTiemKiem = new JButton("T\u00ECm ki\u1EBFm");
 		btnTiemKiem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -124,10 +136,16 @@ public class QLCHView extends JFrame {
 		btnTiemKiem.setBounds(755, 29, 133, 47);
 		contentPane.add(btnTiemKiem);
 		
-		JComboBox comboBox_DaiLy = new JComboBox();
-		comboBox_DaiLy.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		comboBox_DaiLy.setBounds(93, 29, 270, 47);
-		contentPane.add(comboBox_DaiLy);
+		JComboBox comboBox_DaiLy_TimKiem = new JComboBox();
+		//Tạo bảng chọn cho đại lý
+		ArrayList<DaiLy> listDaiLy = DaiLy.getDSDaiLy();
+		comboBox_DaiLy_TimKiem.addItem("");
+		for (DaiLy daiLy : listDaiLy) {
+			comboBox_DaiLy_TimKiem.addItem(daiLy.getTenDaiLy());
+		}
+		comboBox_DaiLy_TimKiem.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		comboBox_DaiLy_TimKiem.setBounds(86, 29, 254, 47);
+		contentPane.add(comboBox_DaiLy_TimKiem);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 96, 905, 2);
@@ -135,19 +153,16 @@ public class QLCHView extends JFrame {
 		
 		JLabel lblDanhSachMacHang = new JLabel("Danh s\u00E1ch m\u1EB7c h\u00E0ng");
 		lblDanhSachMacHang.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblDanhSachMacHang.setBounds(28, 103, 198, 47);
+		lblDanhSachMacHang.setBounds(68, 96, 198, 47);
 		contentPane.add(lblDanhSachMacHang);
 		
 		table = new JTable();
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
 			},
 			new String[] {
-				"STT", "M\u00E3 h\u00E0ng", "T\u00EAn h\u00E0ng", "\u0110\u1EA1i l\u00FD", "Ng\u00E0y nh\u1EADp", "Ng\u00E0y h\u1EBFt h\u1EA1n", "Gi\u00E1 nh\u1EADp", "Gi\u00E1 b\u00E1n", "C\u00E2n n\u1EB7ng"
+				"M\u00E3 h\u00E0ng", "T\u00EAn h\u00E0ng", "\u0110\u1EA1i l\u00FD", "Ng\u00E0y nh\u1EADp", "Ng\u00E0y h\u1EBFt h\u1EA1n", "Gi\u00E1 nh\u1EADp", "Gi\u00E1 b\u00E1n", "C\u00E2n n\u1EB7ng"
 			}
 		));
 
@@ -170,7 +185,7 @@ public class QLCHView extends JFrame {
 		contentPane.add(lblID);
 		
 		textField_ID = new JTextField();
-		textField_ID.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textField_ID.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_ID.setColumns(10);
 		textField_ID.setBounds(174, 458, 176, 31);
 		contentPane.add(textField_ID);
@@ -181,7 +196,7 @@ public class QLCHView extends JFrame {
 		contentPane.add(lblTenMacHang);
 		
 		textField_TenMacHang = new JTextField();
-		textField_TenMacHang.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textField_TenMacHang.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_TenMacHang.setColumns(10);
 		textField_TenMacHang.setBounds(174, 513, 176, 31);
 		contentPane.add(textField_TenMacHang);
@@ -197,15 +212,20 @@ public class QLCHView extends JFrame {
 		contentPane.add(lblNgayNhap);
 		
 		textField_NgayNhap = new JTextField();
-		textField_NgayNhap.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textField_NgayNhap.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_NgayNhap.setColumns(10);
 		textField_NgayNhap.setBounds(174, 621, 176, 31);
 		contentPane.add(textField_NgayNhap);
 		
-		JComboBox comboBox_DaiLy_1 = new JComboBox();
-		comboBox_DaiLy_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		comboBox_DaiLy_1.setBounds(174, 566, 176, 33);
-		contentPane.add(comboBox_DaiLy_1);
+		comboBox_DaiLy = new JComboBox();
+		//Tạo bảng chọn cho đại lý
+		comboBox_DaiLy.addItem("");
+		for (DaiLy daiLy : listDaiLy) {
+			comboBox_DaiLy.addItem(daiLy.getTenDaiLy());
+		}
+		comboBox_DaiLy.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		comboBox_DaiLy.setBounds(174, 566, 176, 33);
+		contentPane.add(comboBox_DaiLy);
 		
 		JLabel lblNgayHetHan = new JLabel("Ng\u00E0y h\u1EBFt h\u1EA1n");
 		lblNgayHetHan.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -213,7 +233,7 @@ public class QLCHView extends JFrame {
 		contentPane.add(lblNgayHetHan);
 		
 		textField_NgayHetHan = new JTextField();
-		textField_NgayHetHan.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textField_NgayHetHan.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_NgayHetHan.setColumns(10);
 		textField_NgayHetHan.setBounds(612, 458, 176, 31);
 		contentPane.add(textField_NgayHetHan);
@@ -224,7 +244,7 @@ public class QLCHView extends JFrame {
 		contentPane.add(lblGiaNhap);
 		
 		textField_GiaNhap = new JTextField();
-		textField_GiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textField_GiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_GiaNhap.setColumns(10);
 		textField_GiaNhap.setBounds(612, 513, 176, 31);
 		contentPane.add(textField_GiaNhap);
@@ -235,7 +255,7 @@ public class QLCHView extends JFrame {
 		contentPane.add(lblGiaBan);
 		
 		textField_GiaBan = new JTextField();
-		textField_GiaBan.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textField_GiaBan.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_GiaBan.setColumns(10);
 		textField_GiaBan.setBounds(612, 567, 176, 31);
 		contentPane.add(textField_GiaBan);
@@ -246,32 +266,41 @@ public class QLCHView extends JFrame {
 		contentPane.add(lblCanNang);
 		
 		textField_CanNang = new JTextField();
-		textField_CanNang.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textField_CanNang.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_CanNang.setColumns(10);
 		textField_CanNang.setBounds(612, 621, 176, 31);
 		contentPane.add(textField_CanNang);
 		
 		JButton btnThem = new JButton("Th\u00EAm");
+		//Dùng các nút nhấn
+		btnThem.addActionListener(action);
 		btnThem.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnThem.setBounds(28, 689, 133, 37);
 		contentPane.add(btnThem);
 		
 		JButton btnXoa = new JButton("X\u00F3a ");
+		//Dùng các nút nhấn
+		btnXoa.addActionListener(action);
 		btnXoa.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnXoa.setBounds(217, 689, 133, 37);
 		contentPane.add(btnXoa);
 		
 		JButton btnCapNhat = new JButton("C\u1EADp nh\u1EADt");
+		//Dùng các nút nhấn
+		btnCapNhat.addActionListener(action);
 		btnCapNhat.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnCapNhat.setBounds(405, 689, 133, 37);
 		contentPane.add(btnCapNhat);
 		
 		JButton btnLuu = new JButton("L\u01B0u");
+		btnLuu.addActionListener(action);
 		btnLuu.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnLuu.setBounds(594, 689, 133, 37);
 		contentPane.add(btnLuu);
 		
 		JButton btnHuyBo = new JButton("H\u1EE7y b\u1ECF");
+		//Dùng các nút nhấn
+		btnHuyBo.addActionListener(action);
 		btnHuyBo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnHuyBo.setBounds(782, 689, 133, 37);
 		contentPane.add(btnHuyBo);
@@ -282,4 +311,17 @@ public class QLCHView extends JFrame {
 		
 		this.setVisible(true);
 	}
+
+	public void xoaForm() {
+		textField_ID.setText("");
+		textField_TenMacHang.setText("");
+		textField_NgayNhap.setText("");
+		textField_NgayHetHan.setText("");
+		textField_GiaNhap.setText("");
+		textField_GiaBan.setText("");
+		textField_CanNang.setText("");
+		comboBox_DaiLy.setSelectedIndex(-1);
+	}
+
+
 }
