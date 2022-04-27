@@ -85,6 +85,13 @@ public class DaiLy {
 		return DaiLy.getDSDaiLy().get(xuatXu);
 	}
 
+	public static DaiLy getDaiLyByTen(String tenDaiLy) {
+		ArrayList<DaiLy> listDaiLy = DaiLy.getDSDaiLy();
+		for(DaiLy daiLy : listDaiLy) {
+			if(daiLy.tenDaiLy.equals(tenDaiLy))
+				return daiLy;
+		}
+		return null;
+	}
 	
 }
-
