@@ -323,5 +323,39 @@ public class QLCHView extends JFrame {
 		comboBox_DaiLy.setSelectedIndex(-1);
 	}
 
-
+	public void themHoacCapNhapMacHang(MacHang mh) {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		if(!this.model.kiemTraTonTai(mh)) {
+			this.model.insert(mh);
+			model_table.addRow(
+					new Object[] {
+							mh.getMaMacHang()+"",
+							mh.getTenMacHang(),
+							mh.getXuatXu().getTenDaiLy(),
+							mh.getNgayNhap().getDate() + "/" + (mh.getNgayHetHan().getMonth() + 1) + "/"
+								+ (mh.getNgayHetHan().getYear() + 1900),
+							mh.getNgayHetHan().getDate() + "/" + (mh.getNgayHetHan().getMonth() + 1) + "/"
+								+ (mh.getNgayHetHan().getYear() + 1900),
+							mh.getGiaNhap()+"",
+							mh.getGiaBan()+"",
+							mh.getCanNang()+"",
+					});
+		}else {
+			this.model.update(mh);
+			int soLuongDong = model_table.getRowCount();
+			for (int i = 0; i < soLuongDong; i++) {
+				String id = model_table.getValueAt(i, 0)+"";
+				if(id.equals(mh.getMaMacHang()+"")) {
+					model_table.setValueAt(mh.getMaMacHang()+"",i,0);
+					model_table.setValueAt(mh.getTenMacHang()+"",i,1);
+					model_table.setValueAt(mh.getXuatXu().getTenDaiLy()+"",i,2);
+					model_table.setValueAt(mh.getNgayNhap().getDate() + "/" + (mh.getNgayHetHan().getMonth() + 1) + "/"+ (mh.getNgayHetHan().getYear() + 1900),i,3);
+					model_table.setValueAt(mh.getNgayHetHan().getDate() + "/" + (mh.getNgayHetHan().getMonth() + 1) + "/"+ (mh.getNgayHetHan().getYear() + 1900),i,4);
+					model_table.setValueAt(mh.getGiaNhap()+"",i,5);
+					model_table.setValueAt(mh.getGiaBan()+"",i,6);
+					model_table.setValueAt(mh.getCanNang()+"",i,7);
+				}
+			}
+		}
+	}
 }
