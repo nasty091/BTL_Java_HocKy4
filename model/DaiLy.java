@@ -80,4 +80,11 @@ public class DaiLy {
 		}
 		return listDaiLy;
 	}
+	
+	public static DaiLy getDaiLyById(int xuatXu) {
+		return DaiLy.getDSDaiLy().get(xuatXu);
+	}
+
+	
 }
+
