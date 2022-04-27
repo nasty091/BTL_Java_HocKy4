@@ -4,10 +4,20 @@ import java.util.ArrayList;
 
 public class QLCHModel {
 	private ArrayList<MacHang> dsMacHang;
-
-	public QLCHModel(ArrayList<MacHang> dsMacHang) {
-		super();
+	private String luaChon; //Dùng để lưu
+	
+	public QLCHModel() {
+		this.dsMacHang = new ArrayList<MacHang>();
 		this.dsMacHang = dsMacHang;
+		this.luaChon = "";// Ms vào là rỗng
+	}
+	
+	public String getLuaChon() {
+		return luaChon;
+	}
+
+	public void setLuaChon(String luaChon) {
+		this.luaChon = luaChon;
 	}
 
 	public ArrayList<MacHang> getDsMacHang() {
@@ -19,7 +29,7 @@ public class QLCHModel {
 	}
 	//Hàm thêm hàng
 	public void insert(MacHang macHang) {
-		this.dsMacHang.add(macHang);
+		this.dsMacHang.add(macHang);	
 	}
 	//Hàm xóa hàng
 	public void delete(MacHang macHang) {
@@ -29,6 +39,14 @@ public class QLCHModel {
 	public void update(MacHang macHang) {
 		this.dsMacHang.remove(macHang);
 		this.dsMacHang.add(macHang);
+	}
+	//Hàm kiểm tra mặt hàng đã tồn tại chưa 
+	public boolean kiemTraTonTai(MacHang mh) {
+		for(MacHang daiLy: dsMacHang) {
+			if(daiLy.getMaMacHang() == mh.getMaMacHang())
+				return true;
+		}
+		return false;
 	}
 	
 }
