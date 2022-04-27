@@ -358,4 +358,39 @@ public class QLCHView extends JFrame {
 			}
 		}
 	}
+
+	public void hienThiThongTin() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int i_row = table.getSelectedRow();
+		
+		//private int maMacHang;
+		int maMacHang = Integer.valueOf(model_table.getValueAt(i_row, 0)+"");
+		//private String tenMacHang;
+		String tenMacHang = model_table.getValueAt(i_row, 1)+"";
+		// private DaiLy xuatXu;
+		DaiLy daiLy = DaiLy.getDaiLyByTen(model_table.getValueAt(i_row, 2)+"");
+		// private Date ngayNhap;
+		String d_ngayNhap = model_table.getValueAt(i_row, 3)+"";
+		Date ngayNhap =  new Date();
+		// private Date ngayHetHan;
+		String d_ngayHetHan = model_table.getValueAt(i_row, 4)+"";
+		Date ngayHetHan = new Date();
+		// private float giaNhap;
+		float giaNhap = Float.valueOf(model_table.getValueAt(i_row, 5)+"");
+		// private float giaBan;
+		float giaBan = Float.valueOf(model_table.getValueAt(i_row, 6)+"");
+		// private float canNang;
+		float canNang = Float.valueOf(model_table.getValueAt(i_row, 7)+"");
+		
+		this.textField_ID.setText(maMacHang+"");
+		this.textField_TenMacHang.setText(tenMacHang+"");
+		this.comboBox_DaiLy.setSelectedItem(daiLy.getTenDaiLy());
+		this.textField_NgayNhap.setText(d_ngayNhap+"");
+		this.textField_NgayHetHan.setText(d_ngayHetHan+"");
+		this.textField_GiaNhap.setText(giaNhap+"");
+		this.textField_GiaBan.setText(giaBan+"");
+		this.textField_CanNang.setText(canNang+"");
+		//MacHang mh = new MacHang(maMacHang, tenMacHang, daiLy, ngayNhap, ngayHetHan, giaNhap, giaBan, canNang);
+		//return mh;
+	}
 }
