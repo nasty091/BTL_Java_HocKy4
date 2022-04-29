@@ -1,5 +1,3 @@
-//hihi
-//haha
 package controller;
 
 import java.awt.event.ActionEvent;
