@@ -1,6 +1,15 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Date;
+
+import javax.swing.Action;
+import javax.swing.JOptionPane;
+
+import model.DaiLy;
+import model.MacHang;
+import view.QLCHView;
 
 public class QLCHController implements Action {
 	private static final String CuaHang = null;
@@ -12,7 +21,6 @@ public class QLCHController implements Action {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Hiện khi bấm các nút vd: Đã thêm, Đã Xóa
 		String cm = e.getActionCommand();
 		// các chức năng
 		if (cm.equals("Lưu")) {
@@ -31,7 +39,9 @@ public class QLCHController implements Action {
 				this.view.thucHienTim();
 		} else if (cm.equals("Hủy tìm")) {
 				this.view.thucHienHuyTim();
-	}
+		} else if (cm.equals("About Me")) {
+				this.view.hienThiAbout();
+		}
 	}
 
 	@Override
