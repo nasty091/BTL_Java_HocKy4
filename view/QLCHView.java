@@ -1,44 +1,12 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import model.DaiLy;
-import model.MacHang;
-import model.QLCHModel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JSeparator;
-import java.awt.Font;
-import java.awt.Color;
-
-import javax.swing.Action;
-import javax.swing.Box;
-import javax.swing.border.BevelBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Date;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
-
-import controller.QLCHController;
 
 public class QLCHView extends JFrame {
 
 	private JPanel contentPane;
 	public QLCHModel model;
-	public JTextField textField_MaMacHang;
+	public JTextField textField_MaMacHang_TimKiem;
 	public JTable table;
 	public JTextField textField_ID;
 	public JTextField textField_TenMacHang;
@@ -49,6 +17,7 @@ public class QLCHView extends JFrame {
 	public JTextField textField_GiaBan;
 	public JTextField textField_CanNang;
 	public JComboBox comboBox_DaiLy;
+	private JComboBox comboBox_DaiLy_TimKiem;
 	/**
 	 * Launch the application.
 	 */
@@ -118,25 +87,22 @@ public class QLCHView extends JFrame {
 		
 		JLabel lblMaMacHang = new JLabel("M\u00E3 m\u1EB7c h\u00E0ng");
 		lblMaMacHang.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblMaMacHang.setBounds(400, 29, 126, 47);
+		lblMaMacHang.setBounds(350, 29, 126, 47);
 		contentPane.add(lblMaMacHang);
 		
-		textField_MaMacHang = new JTextField();
-		textField_MaMacHang.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField_MaMacHang.setColumns(10);
-		textField_MaMacHang.setBounds(536, 29, 176, 47);
-		contentPane.add(textField_MaMacHang);
+		textField_MaMacHang_TimKiem = new JTextField();
+		textField_MaMacHang_TimKiem.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textField_MaMacHang_TimKiem.setColumns(10);
+		textField_MaMacHang_TimKiem.setBounds(471, 29, 176, 47);
+		contentPane.add(textField_MaMacHang_TimKiem);
 		
-		JButton btnTiemKiem = new JButton("T\u00ECm ki\u1EBFm");
-		btnTiemKiem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnTiemKiem.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnTiemKiem.setBounds(755, 29, 133, 47);
-		contentPane.add(btnTiemKiem);
+		JButton btnTim = new JButton("Tìm");
+		btnTim.addActionListener(action);
+		btnTim.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnTim.setBounds(657, 29, 115, 47);
+		contentPane.add(btnTim);
 		
-		JComboBox comboBox_DaiLy_TimKiem = new JComboBox();
+		comboBox_DaiLy_TimKiem = new JComboBox();
 		//Tạo bảng chọn cho đại lý
 		ArrayList<DaiLy> listDaiLy = DaiLy.getDSDaiLy();
 		comboBox_DaiLy_TimKiem.addItem("");
@@ -271,44 +237,43 @@ public class QLCHView extends JFrame {
 		textField_CanNang.setBounds(612, 621, 176, 31);
 		contentPane.add(textField_CanNang);
 		
-		JButton btnThem = new JButton("Th\u00EAm");
-		//Dùng các nút nhấn
-		btnThem.addActionListener(action);
-		btnThem.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnThem.setBounds(28, 689, 133, 37);
-		contentPane.add(btnThem);
-		
-		JButton btnXoa = new JButton("X\u00F3a ");
+		JButton btnXoa = new JButton("Xóa");
 		//Dùng các nút nhấn
 		btnXoa.addActionListener(action);
 		btnXoa.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnXoa.setBounds(217, 689, 133, 37);
+		btnXoa.setBounds(68, 689, 133, 37);
 		contentPane.add(btnXoa);
 		
 		JButton btnCapNhat = new JButton("C\u1EADp nh\u1EADt");
 		//Dùng các nút nhấn
 		btnCapNhat.addActionListener(action);
 		btnCapNhat.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnCapNhat.setBounds(405, 689, 133, 37);
+		btnCapNhat.setBounds(245, 689, 133, 37);
 		contentPane.add(btnCapNhat);
 		
 		JButton btnLuu = new JButton("L\u01B0u");
 		btnLuu.addActionListener(action);
 		btnLuu.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnLuu.setBounds(594, 689, 133, 37);
+		btnLuu.setBounds(420, 689, 133, 37);
 		contentPane.add(btnLuu);
 		
 		JButton btnHuyBo = new JButton("H\u1EE7y b\u1ECF");
 		//Dùng các nút nhấn
 		btnHuyBo.addActionListener(action);
 		btnHuyBo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnHuyBo.setBounds(782, 689, 133, 37);
+		btnHuyBo.setBounds(601, 689, 133, 37);
 		contentPane.add(btnHuyBo);
 		
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(28, 670, 887, 9);
 		contentPane.add(separator_2);
 		
+		JButton btnHuyTim = new JButton("Hủy tìm");
+		btnHuyTim.addActionListener(action);
+		btnHuyTim.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnHuyTim.setBounds(782, 29, 115, 47);
+		contentPane.add(btnHuyTim);
+
 		this.setVisible(true);
 	}
 
@@ -322,24 +287,31 @@ public class QLCHView extends JFrame {
 		textField_CanNang.setText("");
 		comboBox_DaiLy.setSelectedIndex(-1);
 	}
-
+	
+    //Hàm đẩy các thông tin đã nhập lên bảng
+	public void themMacHangVaoTable(MacHang mh) {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		model_table.addRow(
+				new Object[] {
+						mh.getMaMacHang()+"",
+						mh.getTenMacHang(),
+						mh.getXuatXu().getTenDaiLy(),
+						mh.getNgayNhap().getDate() + "/" + (mh.getNgayHetHan().getMonth() + 1) + "/"
+							+ (mh.getNgayHetHan().getYear() + 1900),
+						mh.getNgayHetHan().getDate() + "/" + (mh.getNgayHetHan().getMonth() + 1) + "/"
+							+ (mh.getNgayHetHan().getYear() + 1900),
+						mh.getGiaNhap()+"",
+						mh.getGiaBan()+"",
+						mh.getCanNang()+"",
+				});
+	}
+	
+	//Hàm sửa chữa thông tin cũ và update thông tin mới
 	public void themHoacCapNhapMacHang(MacHang mh) {
 		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
 		if(!this.model.kiemTraTonTai(mh)) {
 			this.model.insert(mh);
-			model_table.addRow(
-					new Object[] {
-							mh.getMaMacHang()+"",
-							mh.getTenMacHang(),
-							mh.getXuatXu().getTenDaiLy(),
-							mh.getNgayNhap().getDate() + "/" + (mh.getNgayHetHan().getMonth() + 1) + "/"
-								+ (mh.getNgayHetHan().getYear() + 1900),
-							mh.getNgayHetHan().getDate() + "/" + (mh.getNgayHetHan().getMonth() + 1) + "/"
-								+ (mh.getNgayHetHan().getYear() + 1900),
-							mh.getGiaNhap()+"",
-							mh.getGiaBan()+"",
-							mh.getCanNang()+"",
-					});
+			this.themMacHangVaoTable(mh);
 		}else {
 			this.model.update(mh);
 			int soLuongDong = model_table.getRowCount();
@@ -359,7 +331,33 @@ public class QLCHView extends JFrame {
 		}
 	}
 
-	public void hienThiThongTin() {
+	//Hàm Lưu
+		public void thucHienLuu() {
+			//private int maMacHang;
+			int maMacHang = Integer.valueOf(this.textField_ID.getText());
+			//private String tenMacHang;
+			String tenMacHang = (this.textField_TenMacHang.getText());
+			// private DaiLy xuatXu;
+			int xuatXu = this.comboBox_DaiLy.getSelectedIndex()-1;
+			DaiLy daiLy = DaiLy.getDaiLyById(xuatXu);
+			// private Date ngayNhap;
+			Date ngayNhap =  new Date(this.textField_NgayNhap.getText());
+			// private Date ngayHetHan;
+			Date ngayHetHan = new Date(this.textField_NgayHetHan.getText());
+			// private float giaNhap;
+			float giaNhap = Float.valueOf(this.textField_GiaNhap.getText());
+			// private float giaBan;
+			float giaBan = Float.valueOf(this.textField_GiaBan.getText());
+			// private float canNang;
+			float canNang = Float.valueOf(this.textField_CanNang.getText());
+			
+			MacHang mh = new MacHang(maMacHang, tenMacHang, daiLy, ngayNhap, ngayHetHan, giaNhap, giaBan, canNang);
+			
+			this.themHoacCapNhapMacHang(mh);
+		}
+		
+	//Hàm lấy thông tin từ bảng 
+	public MacHang getMacHangDangChon() {
 		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
 		int i_row = table.getSelectedRow();
 		
@@ -371,10 +369,10 @@ public class QLCHView extends JFrame {
 		DaiLy daiLy = DaiLy.getDaiLyByTen(model_table.getValueAt(i_row, 2)+"");
 		// private Date ngayNhap;
 		String d_ngayNhap = model_table.getValueAt(i_row, 3)+"";
-		Date ngayNhap =  new Date();
+		Date ngayNhap =  new Date(d_ngayNhap);
 		// private Date ngayHetHan;
 		String d_ngayHetHan = model_table.getValueAt(i_row, 4)+"";
-		Date ngayHetHan = new Date();
+		Date ngayHetHan = new Date(d_ngayHetHan);
 		// private float giaNhap;
 		float giaNhap = Float.valueOf(model_table.getValueAt(i_row, 5)+"");
 		// private float giaBan;
@@ -382,15 +380,105 @@ public class QLCHView extends JFrame {
 		// private float canNang;
 		float canNang = Float.valueOf(model_table.getValueAt(i_row, 7)+"");
 		
-		this.textField_ID.setText(maMacHang+"");
-		this.textField_TenMacHang.setText(tenMacHang+"");
-		this.comboBox_DaiLy.setSelectedItem(daiLy.getTenDaiLy());
+		MacHang mh = new MacHang(maMacHang, tenMacHang, daiLy, ngayNhap, ngayHetHan, giaNhap, giaBan, canNang);
+		return mh;
+	}
+	
+	//Hàm cập nhật
+	public void hienThiThongTin() {
+		MacHang mh = getMacHangDangChon();
+		
+		this.textField_ID.setText(mh.getMaMacHang()+"");
+		this.textField_TenMacHang.setText(mh.getTenMacHang()+"");
+		this.comboBox_DaiLy.setSelectedItem(mh.getXuatXu().getTenDaiLy());
+		String d_ngayNhap = mh.getNgayNhap().getDate() + "/" + (mh.getNgayHetHan().getMonth() + 1) + "/"+ (mh.getNgayHetHan().getYear() + 1900);
 		this.textField_NgayNhap.setText(d_ngayNhap+"");
+		String d_ngayHetHan = mh.getNgayHetHan().getDate() + "/" + (mh.getNgayHetHan().getMonth() + 1) + "/"+ (mh.getNgayHetHan().getYear() + 1900);
 		this.textField_NgayHetHan.setText(d_ngayHetHan+"");
-		this.textField_GiaNhap.setText(giaNhap+"");
-		this.textField_GiaBan.setText(giaBan+"");
-		this.textField_CanNang.setText(canNang+"");
-		//MacHang mh = new MacHang(maMacHang, tenMacHang, daiLy, ngayNhap, ngayHetHan, giaNhap, giaBan, canNang);
-		//return mh;
+		this.textField_GiaNhap.setText(mh.getGiaNhap()+"");
+		this.textField_GiaBan.setText(mh.getGiaBan()+"");
+		this.textField_CanNang.setText(mh.getCanNang()+"");
+	}
+	
+	//Hàm Xóa
+	public void thucHienXoa() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int i_row = table.getSelectedRow();
+		int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa không?");
+		if(luaChon == JOptionPane.YES_OPTION) {
+			MacHang mh = getMacHangDangChon();
+			this.model.delete(mh);
+			model_table.removeRow(i_row);
+		}
+	}
+	
+
+	//Hàm Tìm kiếm
+	public void thucHienTim() {
+		//Hàm thực hiện hủy tìm, nếu không có sẽ bị lỗi dữ liệu 
+		this.thucHienHuyTim();
+		
+		//Hàm thực hiện tìm
+		int xuatXu = this.comboBox_DaiLy_TimKiem.getSelectedIndex()-1;
+		String maCuaHangTimKiem = this.textField_MaMacHang_TimKiem.getText();
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int soLuongDong = model_table.getRowCount();
+		
+		Set<Integer> maCuaHangCanXoa = new TreeSet<Integer>();
+		if(xuatXu >= 0 ) {
+			DaiLy daiLyDaChon = DaiLy.getDaiLyById(xuatXu);
+			for (int i = 0; i < soLuongDong; i++) {
+				String tenDaiLy = model_table.getValueAt(i,2)+"";
+				String id = model_table.getValueAt(i,0)+"";
+				if(!tenDaiLy.equals(daiLyDaChon.getTenDaiLy())) {
+					maCuaHangCanXoa.add(Integer.valueOf(id));
+					
+				}
+			}
+		}
+		if(maCuaHangTimKiem.length()>0) {
+			for (int i = 0; i < soLuongDong; i++) {
+				String id = model_table.getValueAt(i,0)+"";
+				if(!id.equals(maCuaHangTimKiem)) {
+					maCuaHangCanXoa.add(Integer.valueOf(id));
+					
+				}
+			}
+		}
+		for (Integer idCanXoa : maCuaHangCanXoa) {
+			soLuongDong = model_table.getRowCount();
+			for (int i = 0; i < soLuongDong; i++) {
+				String idTrongTable = model_table.getValueAt(i,0)+"";
+				if(idTrongTable.equals(idCanXoa.toString())) {
+					try {
+						model_table.removeRow(i);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					break;
+				}
+			}
+		}
+	}
+	
+	//Hàm hủy tìm và tải lại dữu liệu đã nhập lên bảng
+	public void thucHienHuyTim() {
+		//Xóa cái tìm trong bảng đi
+		while (true) {
+			DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+			int soLuongDong = model_table.getRowCount();
+			if (soLuongDong == 0)
+				break;
+			else
+				try {
+					model_table.removeRow(0);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
+		//Hàm hiện lại danh sách đã nhập
+		for (MacHang mh : this.model.getDsMacHang()) {
+			this.themMacHangVaoTable(mh);
+		}
 	}
 }
