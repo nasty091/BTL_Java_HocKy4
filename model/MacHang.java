@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class MacHang {
+public class MacHang implements Serializable {
 	private int maMacHang;
 	private String tenMacHang;
 	private DaiLy xuatXu;
