@@ -38,6 +38,7 @@ public class QLCHController implements Action {
 		} else if (cm.equals("Tìm")) {
 				this.view.thucHienTim();
 		} else if (cm.equals("Hủy tìm")) {
+<<<<<<< HEAD
 				this.view.thucHienTaiLaiDuLieu();
 		} else if (cm.equals("About Me")) {
 				this.view.hienThiAbout();
@@ -48,6 +49,12 @@ public class QLCHController implements Action {
 		} else if (cm.equals("Open")) {
 			this.view.thucHienOpenFile();
 		} 
+=======
+				this.view.thucHienHuyTim();
+		} else if (cm.equals("About Me")) {
+				this.view.hienThiAbout();
+		}
+>>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 	}
 
 	@Override
