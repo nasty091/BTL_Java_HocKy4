@@ -5,13 +5,19 @@ import java.util.ArrayList;
 public class QLCHModel {
 	private ArrayList<MacHang> dsMacHang;
 	private String luaChon; //Dùng để lưu
+<<<<<<< HEAD
 	private String tenFile;
+=======
+>>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 	
 	public QLCHModel() {
 		this.dsMacHang = new ArrayList<MacHang>();
 		this.dsMacHang = dsMacHang;
 		this.luaChon = "";// Ms vào là rỗng
+<<<<<<< HEAD
 		this.tenFile = "";
+=======
+>>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 	}
 	
 	public String getLuaChon() {
@@ -20,6 +26,7 @@ public class QLCHModel {
 
 	public void setLuaChon(String luaChon) {
 		this.luaChon = luaChon;
+<<<<<<< HEAD
 	}
 	
 	public String getTenFile() {
@@ -28,6 +35,8 @@ public class QLCHModel {
 
 	public void setTenFile(String tenFile) {
 		this.tenFile = tenFile;
+=======
+>>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 	}
 
 	public ArrayList<MacHang> getDsMacHang() {
