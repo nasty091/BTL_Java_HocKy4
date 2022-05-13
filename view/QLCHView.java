@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-<<<<<<< HEAD
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -43,8 +42,6 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import controller.QLCHController;
-=======
->>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 
 public class QLCHView extends JFrame {
 
@@ -85,6 +82,8 @@ public class QLCHView extends JFrame {
 		this.model = new QLCHModel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 939, 805);
+		setResizable(false);// Tắt chế độ phóng to khi mở giao diện
+		
 		
 		//Tạo nút để nhấn vào vd: thêm , sửa 
 		Action action = new QLCHController(this);
@@ -290,43 +289,27 @@ public class QLCHView extends JFrame {
 		//Dùng các nút nhấn
 		btnXoa.addActionListener(action);
 		btnXoa.setFont(new Font("Tahoma", Font.PLAIN, 20));
-<<<<<<< HEAD
 		btnXoa.setBounds(61, 689, 133, 37);
-=======
-		btnXoa.setBounds(68, 689, 133, 37);
->>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 		contentPane.add(btnXoa);
 		
 		JButton btnCapNhat = new JButton("C\u1EADp nh\u1EADt");
 		//Dùng các nút nhấn
 		btnCapNhat.addActionListener(action);
 		btnCapNhat.setFont(new Font("Tahoma", Font.PLAIN, 20));
-<<<<<<< HEAD
 		btnCapNhat.setBounds(282, 689, 133, 37);
-=======
-		btnCapNhat.setBounds(245, 689, 133, 37);
->>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 		contentPane.add(btnCapNhat);
 		
 		JButton btnLuu = new JButton("L\u01B0u");
 		btnLuu.addActionListener(action);
 		btnLuu.setFont(new Font("Tahoma", Font.PLAIN, 20));
-<<<<<<< HEAD
 		btnLuu.setBounds(506, 689, 133, 37);
-=======
-		btnLuu.setBounds(420, 689, 133, 37);
->>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 		contentPane.add(btnLuu);
 		
 		JButton btnHuyBo = new JButton("H\u1EE7y b\u1ECF");
 		//Dùng các nút nhấn
 		btnHuyBo.addActionListener(action);
 		btnHuyBo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-<<<<<<< HEAD
 		btnHuyBo.setBounds(731, 689, 133, 37);
-=======
-		btnHuyBo.setBounds(601, 689, 133, 37);
->>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 		contentPane.add(btnHuyBo);
 		
 		JSeparator separator_2 = new JSeparator();
@@ -338,11 +321,7 @@ public class QLCHView extends JFrame {
 		btnHuyTim.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnHuyTim.setBounds(782, 29, 115, 47);
 		contentPane.add(btnHuyTim);
-<<<<<<< HEAD
 		
-=======
-
->>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 		this.setVisible(true);
 	}
 
@@ -357,11 +336,7 @@ public class QLCHView extends JFrame {
 		comboBox_DaiLy.setSelectedIndex(-1);
 	}
 	
-<<<<<<< HEAD
 	//Hàm đẩy các thông tin đã nhập lên bảng
-=======
-    //Hàm đẩy các thông tin đã nhập lên bảng
->>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 	public void themMacHangVaoTable(MacHang mh) {
 		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
 		model_table.addRow(
@@ -489,11 +464,7 @@ public class QLCHView extends JFrame {
 	//Hàm Tìm kiếm
 	public void thucHienTim() {
 		//Hàm thực hiện hủy tìm, nếu không có sẽ bị lỗi dữ liệu 
-<<<<<<< HEAD
 		this.thucHienTaiLaiDuLieu();
-=======
-		this.thucHienHuyTim();
->>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 		
 		//Hàm thực hiện tìm
 		int xuatXu = this.comboBox_DaiLy_TimKiem.getSelectedIndex()-1;
@@ -539,11 +510,7 @@ public class QLCHView extends JFrame {
 	}
 	
 	//Hàm hủy tìm và tải lại dữu liệu đã nhập lên bảng
-<<<<<<< HEAD
 	public void thucHienTaiLaiDuLieu() {
-=======
-	public void thucHienHuyTim() {
->>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 		//Xóa cái tìm trong bảng đi
 		while (true) {
 			DefaultTableModel model_table = (DefaultTableModel) table.getModel();
@@ -562,12 +529,13 @@ public class QLCHView extends JFrame {
 			this.themMacHangVaoTable(mh);
 		}
 	}
-<<<<<<< HEAD
-
+	
+	//Hàm about
 	public void hienThiAbout() {
 		JOptionPane.showMessageDialog(this, "Phần mềm quản lý mặc hàng 2.0!");
 	}
-
+	
+	//Hàm thoát chương trình
 	public void thoatKhoiChuongTrinh() {
 		int luaChon = JOptionPane.showConfirmDialog(
 			    this,
@@ -635,6 +603,4 @@ public class QLCHView extends JFrame {
 	}
 
 
-=======
->>>>>>> 03c331c258b0e5dee213c76151e2c81dc651a403
 }
