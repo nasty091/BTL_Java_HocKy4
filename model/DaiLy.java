@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class DaiLy {
+public class DaiLy implements Serializable {
 	private int maDaiLy;
 	private String tenDaiLy;
 	
@@ -85,6 +86,13 @@ public class DaiLy {
 		return DaiLy.getDSDaiLy().get(xuatXu);
 	}
 
+	public static DaiLy getDaiLyByTen(String tenDaiLy) {
+		ArrayList<DaiLy> listDaiLy = DaiLy.getDSDaiLy();
+		for(DaiLy daiLy : listDaiLy) {
+			if(daiLy.tenDaiLy.equals(tenDaiLy))
+				return daiLy;
+		}
+		return null;
+	}
 	
 }
-
