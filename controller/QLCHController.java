@@ -16,48 +16,38 @@ public class QLCHController implements Action {
 	public QLCHView view;
 
 	public QLCHController(QLCHView view) {
-		super();
 		this.view = view;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Hiện khi bấm các nút vd: Đã thêm, Đã Xóa
 		String cm = e.getActionCommand();
-		JOptionPane.showMessageDialog(view, "Đã " + cm);
 		// các chức năng
-		if (cm.equals("Thêm")) {
-			this.view.xoaForm();
-			this.view.model.setLuaChon("Thêm");
-		} else if (cm.equals("Lưu")) {
+		if (cm.equals("Lưu")) {
 			try {
-				//private int maMacHang;
-				int maMacHang = Integer.valueOf(this.view.textField_ID.getText());
-				//private String tenMacHang;
-				String tenMacHang = (this.view.textField_TenMacHang.getText());
-				// private DaiLy xuatXu;
-				int xuatXu = this.view.comboBox_DaiLy.getSelectedIndex();
-				DaiLy daiLy = DaiLy.getDaiLyById(xuatXu-1);
-				// private Date ngayNhap;
-				Date ngayNhap =  new Date(this.view.textField_NgayNhap.getText());
-				// private Date ngayHetHan;
-				Date ngayHetHan = new Date(this.view.textField_NgayHetHan.getText());
-				// private float giaNhap;
-				float giaNhap = Float.valueOf(this.view.textField_GiaNhap.getText());
-				// private float giaBan;
-				float giaBan = Float.valueOf(this.view.textField_GiaBan.getText());
-				// private float canNang;
-				float canNang = Float.valueOf(this.view.textField_CanNang.getText());
-				
-				MacHang mh = new MacHang(maMacHang, tenMacHang, daiLy, ngayNhap, ngayHetHan, giaNhap, giaBan, canNang);
-				
-				this.view.themHoacCapNhapMacHang(mh);
+				this.view.thucHienLuu();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		} else if (cm.equals("Cập nhật")) {
 				this.view.hienThiThongTin();
-		}
+		} else if (cm.equals("Xóa")) {
+				this.view.thucHienXoa();
+		} else if (cm.equals("Hủy bỏ")) {
+				this.view.xoaForm();
+		} else if (cm.equals("Tìm")) {
+				this.view.thucHienTim();
+		} else if (cm.equals("Hủy tìm")) {
+				this.view.thucHienTaiLaiDuLieu();
+		} else if (cm.equals("About Me")) {
+				this.view.hienThiAbout();
+		} else if (cm.equals("Exit")) {
+				this.view.thoatKhoiChuongTrinh();
+		} else if (cm.equals("Save")) {
+			this.view.thucHienSaveFile();
+		} else if (cm.equals("Open")) {
+			this.view.thucHienOpenFile();
+		} 
 	}
 
 	@Override
