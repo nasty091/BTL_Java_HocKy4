@@ -8,7 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.DaiLy;
+<<<<<<< HEAD
 import model.MatHang;
+=======
+import model.MacHang;
+>>>>>>> 1fa9f24fb7edea0ac692da9a1cd4e984968207f9
 import model.QLCHModel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -16,12 +20,18 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import java.awt.Font;
+<<<<<<< HEAD
 import java.awt.Toolkit;
+=======
+>>>>>>> 1fa9f24fb7edea0ac692da9a1cd4e984968207f9
 import java.awt.Color;
 
 import javax.swing.Action;
 import javax.swing.Box;
+<<<<<<< HEAD
 import javax.swing.ImageIcon;
+=======
+>>>>>>> 1fa9f24fb7edea0ac692da9a1cd4e984968207f9
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -84,7 +94,12 @@ public class QLCHView extends JFrame {
 		this.model = new QLCHModel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 939, 805);
+<<<<<<< HEAD
 		setResizable(false);
+=======
+		setResizable(false);// Tắt chế độ phóng to khi mở giao diện
+		
+>>>>>>> 1fa9f24fb7edea0ac692da9a1cd4e984968207f9
 		
 		//Tạo nút để nhấn vào vd: thêm , sửa 
 		Action action = new QLCHController(this);
@@ -109,9 +124,13 @@ public class QLCHView extends JFrame {
 		menuSave.addActionListener(action);
 		menuSave.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		menuFile.add(menuSave);
+<<<<<<< HEAD
 		//Thêm icon cho save
 		menuSave.setIcon(new ImageIcon("ImageIcon/icon_save.png"));
 		//=============================
+=======
+		
+>>>>>>> 1fa9f24fb7edea0ac692da9a1cd4e984968207f9
 		JSeparator separator = new JSeparator();
 		menuFile.add(separator);
 		
@@ -369,7 +388,11 @@ public class QLCHView extends JFrame {
 	}
 	
 	//Hàm đẩy các thông tin đã nhập lên bảng
+<<<<<<< HEAD
 	public void themMacHangVaoTable(MatHang mh) {
+=======
+	public void themMacHangVaoTable(MacHang mh) {
+>>>>>>> 1fa9f24fb7edea0ac692da9a1cd4e984968207f9
 		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
 		model_table.addRow(
 				new Object[] {
@@ -561,11 +584,21 @@ public class QLCHView extends JFrame {
 			this.themMacHangVaoTable(mh);
 		}
 	}
+<<<<<<< HEAD
 
 	public void hienThiAbout() {
 		JOptionPane.showMessageDialog(this, "Phần mềm quản lý mặc hàng 2.0!");
 	}
 
+=======
+	
+	//Hàm about
+	public void hienThiAbout() {
+		JOptionPane.showMessageDialog(this, "Phần mềm quản lý mặc hàng 2.0!");
+	}
+	
+	//Hàm thoát chương trình
+>>>>>>> 1fa9f24fb7edea0ac692da9a1cd4e984968207f9
 	public void thoatKhoiChuongTrinh() {
 		int luaChon = JOptionPane.showConfirmDialog(
 			    this,
@@ -582,7 +615,11 @@ public class QLCHView extends JFrame {
 			this.model.setTenFile(path);
 			FileOutputStream fos = new FileOutputStream(path);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
+<<<<<<< HEAD
 			for(MatHang mh : this.model.getDsMacHang()) {
+=======
+			for(MacHang mh : this.model.getDsMacHang()) {
+>>>>>>> 1fa9f24fb7edea0ac692da9a1cd4e984968207f9
 				oos.writeObject(mh);
 			}
 			oos.close();
@@ -592,13 +629,22 @@ public class QLCHView extends JFrame {
 	}
 	
 	public void openFile(File file) {
+<<<<<<< HEAD
 		ArrayList<MatHang> ds = new ArrayList<MatHang>();
+=======
+		ArrayList<MacHang> ds = new ArrayList<MacHang>();
+>>>>>>> 1fa9f24fb7edea0ac692da9a1cd4e984968207f9
 		try {
 			this.model.setTenFile(file.getAbsolutePath());
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
+<<<<<<< HEAD
 			MatHang mh = null;
 			while((mh = (MatHang) ois.readObject()) != null){
+=======
+			MacHang mh = null;
+			while((mh = (MacHang) ois.readObject()) != null){
+>>>>>>> 1fa9f24fb7edea0ac692da9a1cd4e984968207f9
 				ds.add(mh);
 			}
 			ois.close();
