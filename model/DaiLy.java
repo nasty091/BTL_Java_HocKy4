@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DaiLy {
+public class DaiLy implements Serializable {
 	private int maDaiLy;
 	private String tenDaiLy;
 	
