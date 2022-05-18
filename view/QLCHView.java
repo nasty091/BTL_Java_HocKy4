@@ -1,6 +1,49 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import model.DaiLy;
+import model.MatHang;
+import model.QLCHModel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JSeparator;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.Color;
+
+import javax.swing.Action;
+import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.border.BevelBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Set;
+import java.util.TreeSet;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+
+import controller.QLCHController;
 
 public class QLCHView extends JFrame {
 
@@ -41,6 +84,7 @@ public class QLCHView extends JFrame {
 		this.model = new QLCHModel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 939, 805);
+		setResizable(false);
 		
 		//Tạo nút để nhấn vào vd: thêm , sửa 
 		Action action = new QLCHController(this);
@@ -54,31 +98,47 @@ public class QLCHView extends JFrame {
 		menuBar.add(menuFile);
 		
 		JMenuItem menuOpen = new JMenuItem("Open");
+		menuOpen.addActionListener(action);
 		menuOpen.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		menuFile.add(menuOpen);
+		//Thêm icon cho open
+		menuOpen.setIcon(new ImageIcon("ImageIcon/icon_open.png"));
+		//=============================
 		
-		JMenuItem menuClose = new JMenuItem("CLose");
-		menuClose.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		menuFile.add(menuClose);
-		
+		JMenuItem menuSave = new JMenuItem("Save");
+		menuSave.addActionListener(action);
+		menuSave.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+		menuFile.add(menuSave);
+		//Thêm icon cho save
+		menuSave.setIcon(new ImageIcon("ImageIcon/icon_save.png"));
+		//=============================
 		JSeparator separator = new JSeparator();
 		menuFile.add(separator);
 		
 		JMenuItem menuExit = new JMenuItem("Exit");
+		menuExit.addActionListener(action);
 		menuExit.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		menuFile.add(menuExit);
+		//Thêm icon cho exit
+		menuExit.setIcon(new ImageIcon("ImageIcon/icon_exit.png"));
+		//=============================
 		
 		JMenu menuAbout = new JMenu("About");
+		menuAbout.addActionListener(action);
 		menuAbout.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		menuBar.add(menuAbout);
 		
 		JMenuItem menuAboutMe = new JMenuItem("About Me");
+		menuAboutMe.addActionListener(action);
 		menuAboutMe.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		menuAbout.add(menuAboutMe);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		//Thêm icon cho about me
+		menuAboutMe.setIcon(new ImageIcon("ImageIcon/icon_aboutme.png"));
+		//=============================
 		
 		JLabel lblDaiLy = new JLabel("\u0110\u1EA1i l\u00FD");
 		lblDaiLy.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -119,9 +179,11 @@ public class QLCHView extends JFrame {
 		
 		JLabel lblDanhSachMacHang = new JLabel("Danh s\u00E1ch m\u1EB7c h\u00E0ng");
 		lblDanhSachMacHang.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblDanhSachMacHang.setBounds(68, 96, 198, 47);
+		lblDanhSachMacHang.setBounds(10, 94, 216, 47);
 		contentPane.add(lblDanhSachMacHang);
-		
+		//Thêm icon cho danh sách mặt hàng
+		lblDanhSachMacHang.setIcon(new ImageIcon("ImageIcon/icon_itemlist.png"));
+		//=============================
 		table = new JTable();
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setModel(new DefaultTableModel(
@@ -135,32 +197,38 @@ public class QLCHView extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 151, 905, 213);
 		contentPane.add(scrollPane);
-		
+			
 		JSeparator separator_1_1 = new JSeparator();
 		separator_1_1.setBounds(10, 388, 905, 2);
 		contentPane.add(separator_1_1);
 		
 		JLabel lblThngTinMc = new JLabel("Th\u00F4ng tin m\u1EB7c h\u00E0ng");
 		lblThngTinMc.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblThngTinMc.setBounds(29, 400, 198, 47);
+		lblThngTinMc.setBounds(10, 400, 217, 47);
 		contentPane.add(lblThngTinMc);
-		
+		//Thêm icon cho thông tin mặt hàng
+		lblThngTinMc.setIcon(new ImageIcon("ImageIcon/icon_iteminformation.png"));
+		//=============================
 		lblID = new JLabel("M\u00E3 m\u1EB7c h\u00E0ng");
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblID.setBounds(28, 450, 126, 47);
+		lblID.setBounds(10, 446, 154, 47);
 		contentPane.add(lblID);
-		
+		//Thêm icon cho mã mặt hàng
+		lblID.setIcon(new ImageIcon("ImageIcon/icon_itemcode.png"));
+		//=============================
 		textField_ID = new JTextField();
 		textField_ID.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_ID.setColumns(10);
-		textField_ID.setBounds(174, 458, 176, 31);
+		textField_ID.setBounds(174, 457, 176, 31);
 		contentPane.add(textField_ID);
 		
-		JLabel lblTenMacHang = new JLabel("T\u00EAn m\u1EB7c h\u00E0ng");
+		JLabel lblTenMacHang = new JLabel("Tên mặc hàng");
 		lblTenMacHang.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblTenMacHang.setBounds(29, 505, 133, 47);
+		lblTenMacHang.setBounds(10, 502, 158, 47);
 		contentPane.add(lblTenMacHang);
-		
+		//Thêm icon cho tên mặt hàng
+		lblTenMacHang.setIcon(new ImageIcon("ImageIcon/icon_itemname.png"));
+		//=============================
 		textField_TenMacHang = new JTextField();
 		textField_TenMacHang.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_TenMacHang.setColumns(10);
@@ -169,14 +237,18 @@ public class QLCHView extends JFrame {
 		
 		JLabel lblDaiLy2 = new JLabel("\u0110\u1EA1i l\u00FD");
 		lblDaiLy2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblDaiLy2.setBounds(29, 559, 133, 47);
+		lblDaiLy2.setBounds(10, 562, 133, 47);
 		contentPane.add(lblDaiLy2);
-		
+		//Thêm icon cho đại lý
+		lblDaiLy2.setIcon(new ImageIcon("ImageIcon/icon_authorizeddealer.png"));
+		//=============================
 		JLabel lblNgayNhap = new JLabel("Ng\u00E0y nh\u1EADp");
 		lblNgayNhap.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNgayNhap.setBounds(29, 613, 133, 47);
+		lblNgayNhap.setBounds(10, 619, 133, 47);
 		contentPane.add(lblNgayNhap);
-		
+		//Thêm icon cho ngày nhập
+		lblNgayNhap.setIcon(new ImageIcon("ImageIcon/icon_dateadded.png"));
+		//=============================
 		textField_NgayNhap = new JTextField();
 		textField_NgayNhap.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_NgayNhap.setColumns(10);
@@ -195,20 +267,24 @@ public class QLCHView extends JFrame {
 		
 		JLabel lblNgayHetHan = new JLabel("Ng\u00E0y h\u1EBFt h\u1EA1n");
 		lblNgayHetHan.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNgayHetHan.setBounds(466, 450, 126, 47);
+		lblNgayHetHan.setBounds(466, 446, 154, 47);
 		contentPane.add(lblNgayHetHan);
-		
+		//Thêm icon cho ngày hết hạn
+		lblNgayHetHan.setIcon(new ImageIcon("ImageIcon/icon_expirationdate.png"));
+		//=============================
 		textField_NgayHetHan = new JTextField();
 		textField_NgayHetHan.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_NgayHetHan.setColumns(10);
-		textField_NgayHetHan.setBounds(612, 458, 176, 31);
+		textField_NgayHetHan.setBounds(630, 457, 176, 31);
 		contentPane.add(textField_NgayHetHan);
 		
 		JLabel lblGiaNhap = new JLabel("Gi\u00E1 nh\u1EADp");
 		lblGiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblGiaNhap.setBounds(466, 505, 126, 47);
 		contentPane.add(lblGiaNhap);
-		
+		//Thêm icon cho giá nhập
+		lblGiaNhap.setIcon(new ImageIcon("ImageIcon/icon_entryprice.png"));
+		//=============================
 		textField_GiaNhap = new JTextField();
 		textField_GiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_GiaNhap.setColumns(10);
@@ -219,7 +295,9 @@ public class QLCHView extends JFrame {
 		lblGiaBan.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblGiaBan.setBounds(466, 559, 126, 47);
 		contentPane.add(lblGiaBan);
-		
+		//Thêm icon cho giá bán
+		lblGiaBan.setIcon(new ImageIcon("ImageIcon/icon_price.png"));
+		//=============================
 		textField_GiaBan = new JTextField();
 		textField_GiaBan.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_GiaBan.setColumns(10);
@@ -230,7 +308,9 @@ public class QLCHView extends JFrame {
 		lblCanNang.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblCanNang.setBounds(466, 613, 126, 47);
 		contentPane.add(lblCanNang);
-		
+		//Thêm icon cho cân nặng
+		lblCanNang.setIcon(new ImageIcon("ImageIcon/icon_weight.png"));
+		//=============================
 		textField_CanNang = new JTextField();
 		textField_CanNang.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_CanNang.setColumns(10);
@@ -241,27 +321,27 @@ public class QLCHView extends JFrame {
 		//Dùng các nút nhấn
 		btnXoa.addActionListener(action);
 		btnXoa.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnXoa.setBounds(68, 689, 133, 37);
+		btnXoa.setBounds(61, 689, 133, 37);
 		contentPane.add(btnXoa);
 		
 		JButton btnCapNhat = new JButton("C\u1EADp nh\u1EADt");
 		//Dùng các nút nhấn
 		btnCapNhat.addActionListener(action);
 		btnCapNhat.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnCapNhat.setBounds(245, 689, 133, 37);
+		btnCapNhat.setBounds(282, 689, 133, 37);
 		contentPane.add(btnCapNhat);
 		
 		JButton btnLuu = new JButton("L\u01B0u");
 		btnLuu.addActionListener(action);
 		btnLuu.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnLuu.setBounds(420, 689, 133, 37);
+		btnLuu.setBounds(506, 689, 133, 37);
 		contentPane.add(btnLuu);
 		
 		JButton btnHuyBo = new JButton("H\u1EE7y b\u1ECF");
 		//Dùng các nút nhấn
 		btnHuyBo.addActionListener(action);
 		btnHuyBo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnHuyBo.setBounds(601, 689, 133, 37);
+		btnHuyBo.setBounds(731, 689, 133, 37);
 		contentPane.add(btnHuyBo);
 		
 		JSeparator separator_2 = new JSeparator();
@@ -273,7 +353,7 @@ public class QLCHView extends JFrame {
 		btnHuyTim.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnHuyTim.setBounds(782, 29, 115, 47);
 		contentPane.add(btnHuyTim);
-
+		
 		this.setVisible(true);
 	}
 
@@ -288,8 +368,8 @@ public class QLCHView extends JFrame {
 		comboBox_DaiLy.setSelectedIndex(-1);
 	}
 	
-    //Hàm đẩy các thông tin đã nhập lên bảng
-	public void themMacHangVaoTable(MacHang mh) {
+	//Hàm đẩy các thông tin đã nhập lên bảng
+	public void themMacHangVaoTable(MatHang mh) {
 		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
 		model_table.addRow(
 				new Object[] {
@@ -307,7 +387,7 @@ public class QLCHView extends JFrame {
 	}
 	
 	//Hàm sửa chữa thông tin cũ và update thông tin mới
-	public void themHoacCapNhapMacHang(MacHang mh) {
+	public void themHoacCapNhapMacHang(MatHang mh) {
 		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
 		if(!this.model.kiemTraTonTai(mh)) {
 			this.model.insert(mh);
@@ -351,13 +431,13 @@ public class QLCHView extends JFrame {
 			// private float canNang;
 			float canNang = Float.valueOf(this.textField_CanNang.getText());
 			
-			MacHang mh = new MacHang(maMacHang, tenMacHang, daiLy, ngayNhap, ngayHetHan, giaNhap, giaBan, canNang);
+			MatHang mh = new MatHang(maMacHang, tenMacHang, daiLy, ngayNhap, ngayHetHan, giaNhap, giaBan, canNang);
 			
 			this.themHoacCapNhapMacHang(mh);
 		}
 		
 	//Hàm lấy thông tin từ bảng 
-	public MacHang getMacHangDangChon() {
+	public MatHang getMacHangDangChon() {
 		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
 		int i_row = table.getSelectedRow();
 		
@@ -380,13 +460,13 @@ public class QLCHView extends JFrame {
 		// private float canNang;
 		float canNang = Float.valueOf(model_table.getValueAt(i_row, 7)+"");
 		
-		MacHang mh = new MacHang(maMacHang, tenMacHang, daiLy, ngayNhap, ngayHetHan, giaNhap, giaBan, canNang);
+		MatHang mh = new MatHang(maMacHang, tenMacHang, daiLy, ngayNhap, ngayHetHan, giaNhap, giaBan, canNang);
 		return mh;
 	}
 	
 	//Hàm cập nhật
 	public void hienThiThongTin() {
-		MacHang mh = getMacHangDangChon();
+		MatHang mh = getMacHangDangChon();
 		
 		this.textField_ID.setText(mh.getMaMacHang()+"");
 		this.textField_TenMacHang.setText(mh.getTenMacHang()+"");
@@ -406,7 +486,7 @@ public class QLCHView extends JFrame {
 		int i_row = table.getSelectedRow();
 		int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa không?");
 		if(luaChon == JOptionPane.YES_OPTION) {
-			MacHang mh = getMacHangDangChon();
+			MatHang mh = getMacHangDangChon();
 			this.model.delete(mh);
 			model_table.removeRow(i_row);
 		}
@@ -416,7 +496,7 @@ public class QLCHView extends JFrame {
 	//Hàm Tìm kiếm
 	public void thucHienTim() {
 		//Hàm thực hiện hủy tìm, nếu không có sẽ bị lỗi dữ liệu 
-		this.thucHienHuyTim();
+		this.thucHienTaiLaiDuLieu();
 		
 		//Hàm thực hiện tìm
 		int xuatXu = this.comboBox_DaiLy_TimKiem.getSelectedIndex()-1;
@@ -462,7 +542,7 @@ public class QLCHView extends JFrame {
 	}
 	
 	//Hàm hủy tìm và tải lại dữu liệu đã nhập lên bảng
-	public void thucHienHuyTim() {
+	public void thucHienTaiLaiDuLieu() {
 		//Xóa cái tìm trong bảng đi
 		while (true) {
 			DefaultTableModel model_table = (DefaultTableModel) table.getModel();
@@ -477,8 +557,80 @@ public class QLCHView extends JFrame {
 				}
 		}
 		//Hàm hiện lại danh sách đã nhập
-		for (MacHang mh : this.model.getDsMacHang()) {
+		for (MatHang mh : this.model.getDsMacHang()) {
 			this.themMacHangVaoTable(mh);
 		}
 	}
+
+	public void hienThiAbout() {
+		JOptionPane.showMessageDialog(this, "Phần mềm quản lý mặc hàng 2.0!");
+	}
+
+	public void thoatKhoiChuongTrinh() {
+		int luaChon = JOptionPane.showConfirmDialog(
+			    this,
+			    "Bạn có muốn thoát khỏi chương trình?",
+			    "Exit",
+			    JOptionPane.YES_NO_OPTION);
+		if(luaChon == JOptionPane.YES_OPTION) {
+			System.exit(0);
+		}
+	}
+	
+	public void saveFile(String path) {
+		try {
+			this.model.setTenFile(path);
+			FileOutputStream fos = new FileOutputStream(path);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			for(MatHang mh : this.model.getDsMacHang()) {
+				oos.writeObject(mh);
+			}
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void openFile(File file) {
+		ArrayList<MatHang> ds = new ArrayList<MatHang>();
+		try {
+			this.model.setTenFile(file.getAbsolutePath());
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			MatHang mh = null;
+			while((mh = (MatHang) ois.readObject()) != null){
+				ds.add(mh);
+			}
+			ois.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		this.model.setDsMacHang(ds);
+	}
+	
+
+	public void thucHienSaveFile() {
+		if(this.model.getTenFile().length() > 0) {
+			saveFile(this.model.getTenFile());
+		}else {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showSaveDialog(this);
+			if(returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				saveFile(file.getAbsolutePath());
+			}
+		}
+	}
+
+	public void thucHienOpenFile() {
+		JFileChooser fc = new JFileChooser();
+		int returnVal = fc.showOpenDialog(this);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			openFile(file);
+			thucHienTaiLaiDuLieu();
+		}
+	}
+
+
 }
